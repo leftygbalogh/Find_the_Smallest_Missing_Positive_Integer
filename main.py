@@ -20,15 +20,15 @@ def findSmallestMissingPositive(orderNumbers):
     #print(orderNumbers)
     if len(orderNumbers) == 0:
         return 1
-    sortedOrderNumbers = sorted(orderNumbers)
-    base = sortedOrderNumbers[0]
-    for index in range(1, len(sortedOrderNumbers)):
+    orderNumbers = sorted(orderNumbers)
+    base = orderNumbers[0]
+    for index in range(1, len(orderNumbers)):
 
         #print(f"index {index};  sortedOrderNumbers: {sortedOrderNumbers[index]}")
-        if sortedOrderNumbers[index] >= 0 and base+index < sortedOrderNumbers[index]:
+        if orderNumbers[index] >= 0 and base+index < orderNumbers[index]:
             return base + 1
-        base = sortedOrderNumbers[index]
-    return max(sortedOrderNumbers) + 1
+        base = orderNumbers[index]
+    return max(orderNumbers) + 1
 
 
 
