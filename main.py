@@ -21,18 +21,24 @@ def radix_sort_bucket(arr):
 
     while max_num // exp > 0:
         buckets = [[] for _ in range(10)]
+        #print(buckets)
 
         # Distribute numbers into buckets based on current digit
         for num in arr:
             index = (num // exp) % 10
+            #print("index: {index} =  number: {num} // exp {exp} % 10".format(index=index, exp=exp, num=num))
             buckets[index].append(num)
+            buckets[index].append(num)
+            #print (buckets)
+
 
         # Recombine buckets into the main list
         arr = [num for bucket in buckets for num in bucket]
+        #print(arr)
 
         exp *= 10
 
-    return arr
+    return arr, max_num
 
 def findSmallestMissingPositive(orderNumbers):
     # Write your code here
@@ -41,7 +47,7 @@ def findSmallestMissingPositive(orderNumbers):
     if len(orderNumbers) == 0:
         return 1
     # orderNumbers = sorted(orderNumbers)
-    #orderNumbers = radix_sort_bucket(orderNumbers)
+    orderNumbers, maxNum = radix_sort_bucket(orderNumbers)
     #orderNumbers.sort()
 
     #print(orderNumbers)
@@ -51,7 +57,7 @@ def findSmallestMissingPositive(orderNumbers):
         else:
             orderNumbers = orderNumbers[1:]
             #print(orderNumbers)
-    return orderNumbers[0]+1
+    return maxNum+1
 
 
 
