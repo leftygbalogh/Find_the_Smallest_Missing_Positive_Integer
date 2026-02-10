@@ -57,7 +57,7 @@ def findSmallestMissingPositive(orderNumbers):
         else:
             orderNumbers = orderNumbers[1:]
             #print(orderNumbers)
-    return maxNum+1
+    return max(maxNum+1,1)
 
 
 
