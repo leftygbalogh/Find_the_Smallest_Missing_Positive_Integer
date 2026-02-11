@@ -19,12 +19,19 @@ def findSmallestMissingPositive(orderNumbers):
 
     n = len(orderNumbers)
     for i in range(n):
-        while (orderNumbers[i] > 0 and
-               orderNumbers[i] <= n and
-               orderNumbers[orderNumbers[i] - 1] != orderNumbers[i]):
+        while (orderNumbers[i] > 0 and #Only move a number if it is positive and
+               orderNumbers[i] <= n and #if its value is smaller than the size of the list and
+               orderNumbers[orderNumbers[i] - 1] != orderNumbers[i]): #the two neighbouring numbers are not equal
+            print('i={}, orderNumbers[orderNumbers[i] - 1]={} != orderNumbers[i]={}'
+                  .format(i, orderNumbers[orderNumbers[i] - 1], orderNumbers[i]))
             target_idx = orderNumbers[i] - 1
+            print('i={}, target_idx: {} = orderNumbers[i] - 1:{}'.format(i, target_idx, orderNumbers[i] - 1
+            ))
+            print('Before orderNumbers[i]={}, orderNumbers[target_idx]={}'.format(orderNumbers[i], orderNumbers[target_idx]))
             orderNumbers[i], orderNumbers[target_idx] = orderNumbers[target_idx], orderNumbers[i]
-    print(orderNumbers)
+            print('After orderNumbers[i]={}, orderNumbers[target_idx]={}'.format(orderNumbers[i], orderNumbers[target_idx]))
+
+            #print(orderNumbers)
 
     for i in range(n):
         if orderNumbers[i] != i + 1:
