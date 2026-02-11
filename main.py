@@ -7,7 +7,6 @@ import re
 import sys
 
 
-
 #
 # Complete the 'findSmallestMissingPositive' function below.
 #
@@ -21,45 +20,44 @@ def radix_sort_bucket(arr):
 
     while max_num // exp > 0:
         buckets = [[] for _ in range(10)]
-        #print(buckets)
+        # print(buckets)
 
         # Distribute numbers into buckets based on current digit
         for num in arr:
-            index = (num // exp) % 10
-            #print("index: {index} =  number: {num} // exp {exp} % 10".format(index=index, exp=exp, num=num))
-            buckets[index].append(num)
-            buckets[index].append(num)
-            #print (buckets)
-
+            if num < 0:
+                pass
+            else:
+                index = (num // exp) % 10
+                buckets[index].append(num)
+                buckets[index].append(num)
 
         # Recombine buckets into the main list
         arr = [num for bucket in buckets for num in bucket]
-        #print(arr)
+        # print(arr)
 
         exp *= 10
 
     return arr, max_num
 
+
 def findSmallestMissingPositive(orderNumbers):
     # Write your code here
-    #print(orderNumbers)
+    # print(orderNumbers)
 
     if len(orderNumbers) == 0:
         return 1
     # orderNumbers = sorted(orderNumbers)
     orderNumbers, maxNum = radix_sort_bucket(orderNumbers)
-    #orderNumbers.sort()
+    # orderNumbers.sort()
 
-    #print(orderNumbers)
+    # print(orderNumbers)
     while len(orderNumbers) > 1:
-        if orderNumbers[0] >= 0 and orderNumbers[0]+1 < orderNumbers[1]:
-            return orderNumbers[0]+1
+        if orderNumbers[0] >= 0 and orderNumbers[0] + 1 < orderNumbers[1]:
+            return orderNumbers[0] + 1
         else:
             orderNumbers = orderNumbers[1:]
-            #print(orderNumbers)
-    return max(maxNum+1,1)
-
-
+            # print(orderNumbers)
+    return max(maxNum + 1, 1)
 
 
 if __name__ == '__main__':
