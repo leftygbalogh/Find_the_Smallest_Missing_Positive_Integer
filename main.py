@@ -59,7 +59,19 @@ def countSort(arr):
 
     return arr, max_val
 
+def cyclic_sort(nums):
+    i = 0
+    while i < len(nums):
+        # Since numbers are from 1 to n, the correct index for num is num-1
+        correct_idx = nums[i] - 1
 
+        if nums[i] != nums[correct_idx]:
+            # Swap to place the number at the correct index
+            nums[i], nums[correct_idx] = nums[correct_idx], nums[i]
+        else:
+            i += 1
+
+    return nums
 
 def findSmallestMissingPositive(orderNumbers):
     # Write your code here
@@ -68,12 +80,13 @@ def findSmallestMissingPositive(orderNumbers):
         return 1
     # orderNumbers = sorted(orderNumbers)
     #orderNumbers, maxNum = radix_sort_bucket(orderNumbers) #3 9 12
-    orderNumbers, maxNum = countSort(orderNumbers)
+    #orderNumbers, maxNum = countSort(orderNumbers)
+    orderNumbers = cyclic_sort(orderNumbers)
 
     # orderNumbers.sort()
     #orderNumbers = list(set(orderNumbers))
     #orderNumbers = sorted(orderNumbers) #3 9 12
-    #maxNum = orderNumbers[-1]           #3 9 12
+    maxNum = orderNumbers[-1]           #3 9 12
 
 
     # print(orderNumbers)

@@ -19,14 +19,16 @@ def findSmallestMissingPositive(orderNumbers):
 
     n = len(orderNumbers)
     for i in range(n):
-        while 1 <= orderNumbers[i] <= n and orderNumbers[orderNumbers[i] - 1] != orderNumbers[i]:
+        while (orderNumbers[i] > 0 and
+               orderNumbers[i] <= n and
+               orderNumbers[orderNumbers[i] - 1] != orderNumbers[i]):
             target_idx = orderNumbers[i] - 1
             orderNumbers[i], orderNumbers[target_idx] = orderNumbers[target_idx], orderNumbers[i]
+    print(orderNumbers)
 
     for i in range(n):
         if orderNumbers[i] != i + 1:
             return i + 1
-
     return n + 1
 
 if __name__ == '__main__':
