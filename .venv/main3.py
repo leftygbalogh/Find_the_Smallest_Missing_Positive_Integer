@@ -19,7 +19,10 @@ def findSmallestMissingPositive(orderNumbers):
         return 1
 
     orderNumbers = list(set(orderNumbers))
+    #A set is an ordered, deduplicated list, turning a noisy, dirty list into a cleaner one
     orderNumbers = list(filter(lambda x: 0 < x <= len(orderNumbers) , orderNumbers))
+    #The lambda filter removes all values that are out of range,
+    # so even in worst case scenario, there are only len(orderNumbers)
 
     for i in range(len(orderNumbers)):
         if orderNumbers[i] != i+1:

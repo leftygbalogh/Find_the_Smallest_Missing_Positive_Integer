@@ -65,3 +65,8 @@ Sample Input 1
 
 Sample Output 1  
 2
+
+# Notes
+The solution space is much smaller than the range of numbers in the list.  
+In the worst computational case, you get an list from 1..n and the result is n+1.  
+Otherwise, you may get a noisy list with negatives, duplicates and numbers larger than the length of the list, getting rid of the noise is key.
