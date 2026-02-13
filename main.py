@@ -13,30 +13,21 @@ import sys
 # The function is expected to return an INTEGER.
 # The function accepts INTEGER_ARRAY orderNumbers as parameter.
 #
-
 def findSmallestMissingPositive(orderNumbers):
-    # Write your code here
-
-    orderNumbers = list(filter(lambda x: x > 0 and x < len(orderNumbers), orderNumbers))
-    print('Filtered Ordered numbers'.format(orderNumbers))
 
     if len(orderNumbers) == 0:
         return 1
-    orderNumbers = sorted(orderNumbers)
-    print('Sorted Ordered numbers'.format(orderNumbers))
-    maxNum = orderNumbers[-1]
-    print('max num'.format(maxNum))
 
+    orderNumbers = list(set(orderNumbers))
+    #A set is an ordered, deduplicated list, turning a noisy, dirty list into a cleaner one
+    orderNumbers = list(filter(lambda x: 0 < x <= len(orderNumbers) , orderNumbers))
+    #The lambda filter removes all values that are out of range,
+    # so even in worst case scenario, there are only len(orderNumbers)
 
-    # print(orderNumbers)
-    while len(orderNumbers) > 1:
-        if orderNumbers[0] >= 0 and orderNumbers[0] + 1 < orderNumbers[1]:
-            return orderNumbers[0] + 1
-        else:
-            orderNumbers = orderNumbers[1:]
-            print(orderNumbers)
-    return max(maxNum + 1, 1)
-
+    for i in range(len(orderNumbers)):
+        if orderNumbers[i] != i+1:
+            return i + 1
+    return len(orderNumbers) + 1
 
 if __name__ == '__main__':
     orderNumbers_count = int(input().strip())
